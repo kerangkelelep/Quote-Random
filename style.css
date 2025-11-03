@@ -1,0 +1,140 @@
+/* Import font dari Google Fonts (Opsional, tapi keren) */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500&display=swap');
+
+:root {
+    --c-bg: #f4f7f6;
+    --c-surface: #ffffff;
+    --c-text: #333;
+    --c-author: #777;
+    --c-primary: #007bff;
+    --c-primary-hover: #0056b3;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--c-bg);
+    color: var(--c-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.quote-container {
+    background-color: var(--c-surface);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* === FITUR ANIMASI === */
+#quote-display {
+    min-height: 150px; /* Mencegah layout "lompat" saat quote berganti */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    /* Ini adalah kuncinya: transisi di 'opacity' */
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* Kelas ini akan kita tambahkan via JavaScript untuk memicu FADE-OUT */
+#quote-display.fading {
+    opacity: 0;
+}
+
+#quote-text {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+#quote-author {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--c-author);
+    text-align: right;
+    display: block; /* Agar rata kanan */
+    margin-top: 1rem;
+}
+
+/* === Tombol === */
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Membuat tombol share ke kiri, tombol utama ke kanan */
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.tombol-utama {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: var(--c-primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.tombol-utama:hover {
+    background-color: var(--c-primary-hover);
+    transform: translateY(-2px);
+}
+
+/* === FITUR TOMBOL SHARE === */
+.tombol-ikon {
+    background: none;
+    border: 2px solid #ccc;
+    color: #ccc;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%; /* Bulat */
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.tombol-ikon:hover {
+    border-color: var(--c-primary);
+    color: var(--c-primary);
+}
+
+/* Membuat ikon "Share" dengan CSS (tanpa file gambar) */
+.tombol-ikon::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: currentColor;
+    border-radius: 50%;
+    top: 10px;
+    left: 18px;
+    box-shadow: 8px 6px 0 0 currentColor, -8px 6px 0 0 currentColor;
+}
+.tombol-ikon::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background: currentColor;
+    top: 21px;
+    left: 13px;
+    transform: rotate(30deg);
+}
